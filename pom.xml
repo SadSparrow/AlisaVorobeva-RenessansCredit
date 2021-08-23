@@ -100,7 +100,7 @@
                     <properties>
                         <property>
                             <name>listener</name>
-                            <value>oru.appline.framework.util.MyAllureListener</value>
+                            <value>ru.appline.framework.util.MyAllureListener</value>
                         </property>
                     </properties>
                 </configuration>
