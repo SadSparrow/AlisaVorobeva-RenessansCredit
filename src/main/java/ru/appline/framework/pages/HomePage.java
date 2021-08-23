@@ -1,7 +1,7 @@
 package ru.appline.framework.pages;
 
 import io.qameta.allure.Step;
-import org.junit.jupiter.api.Assertions;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -21,7 +21,7 @@ public class HomePage extends BasePage {
                 return pageManager.getPage(ContributionsPage.class);
             }
         }
-        Assertions.fail("Подменю '" + nameSubMenu + "' не было найдено на стартовой странице");
+        Assert.fail("Подменю '" + nameSubMenu + "' не было найдено на стартовой странице");
         return pageManager.getPage(ContributionsPage.class);
     }
 

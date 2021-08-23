@@ -1,6 +1,6 @@
 package ru.appline.framework.pages;
 
-import org.junit.jupiter.api.Assertions;
+import org.junit.Assert;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -26,7 +26,7 @@ public class BasePage {
         try {
             return wait.until(ExpectedConditions.elementToBeClickable(element));
         } catch (TimeoutException e) {
-            Assertions.fail("Элемент не кликабелен");
+            Assert.fail("Элемент не кликабелен");
         }
         return element;
     }
@@ -42,12 +42,12 @@ public class BasePage {
         try {
             wait.until(condition);
         } catch (TimeoutException e) {
-            Assertions.fail(message);
+            Assert.fail(message);
         }
     }
 
     protected <T extends BasePage> T checkOpenPageByTitle(String title) {
-        Assertions.assertEquals(title, driverManager.getDriver().getTitle(), "Заголовок не соответствует требуемому");
+        Assert.assertEquals("Заголовок не соответствует требуемому", title, driverManager.getDriver().getTitle());
         return (T) this;
     }
 }

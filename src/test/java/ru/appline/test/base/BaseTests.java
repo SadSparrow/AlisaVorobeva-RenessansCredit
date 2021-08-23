@@ -1,41 +1,39 @@
 package ru.appline.test.base;
 
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
 import ru.appline.framework.managers.DriverManager;
 import ru.appline.framework.managers.InitManager;
 import ru.appline.framework.managers.PageManager;
 import ru.appline.framework.managers.TestPropManager;
-import ru.appline.framework.util.MyAllureListener;
 
 import static ru.appline.framework.util.PropConst.BASE_URL;
 
-@ExtendWith(MyAllureListener.class)
+
 public abstract class BaseTests {
 
     protected PageManager app = PageManager.getPageManager();
 
     private final DriverManager driverManager = DriverManager.getDriverManager();
 
-    @BeforeAll
+    @BeforeClass
     public static void beforeAll() {
         InitManager.initFramework();
     }
 
-    @BeforeEach
+    @Before
     public void beforeEach() {
         driverManager.getDriver().get(TestPropManager.getTestPropManager().getProperty(BASE_URL));
     }
 
-    @AfterEach
+    @After
     public void afterEach() {
         app.clearPageMap();
     }
 
-    @AfterAll
+    @AfterClass
     public static void afterAll() {
         InitManager.quitFramework();
     }

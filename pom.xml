@@ -23,10 +23,10 @@
 
         <!-- Dependencies Version -->
         <selenium-java.version>3.141.59</selenium-java.version>
-        <junit-jupiter.version>5.7.0</junit-jupiter.version>
-        <junit-platform-launcher.version>1.7.0</junit-platform-launcher.version>
-        <allure-junit5.version>2.14.0</allure-junit5.version>
+        <junit.version>4.13.1</junit.version>
+        <allure-junit4.version>2.13.5</allure-junit4.version>
         <aspectj.version>1.9.7</aspectj.version>
+        <JUnitParams.version>1.1.1</JUnitParams.version>
 
         <!-- Plugins Version -->
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
@@ -44,25 +44,26 @@
             <version>${selenium-java.version}</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter -->
+        <!-- https://mvnrepository.com/artifact/junit/junit -->
         <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
-            <version>${junit-jupiter.version}</version>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>${junit.version}</version>
         </dependency>
 
-        <!-- https://mvnrepository.com/artifact/org.junit.platform/junit-platform-launcher -->
-        <dependency>
-            <groupId>org.junit.platform</groupId>
-            <artifactId>junit-platform-launcher</artifactId>
-            <version>${junit-platform-launcher.version}</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-junit5 -->
+        <!-- https://mvnrepository.com/artifact/io.qameta.allure/allure-junit4 -->
         <dependency>
             <groupId>io.qameta.allure</groupId>
-            <artifactId>allure-junit5</artifactId>
-            <version>${allure-junit5.version}</version>
+            <artifactId>allure-junit4</artifactId>
+            <version>${allure-junit4.version}</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/pl.pragmatists/JUnitParams -->
+        <dependency>
+            <groupId>pl.pragmatists</groupId>
+            <artifactId>JUnitParams</artifactId>
+            <version>${JUnitParams.version}</version>
+            <scope>test</scope>
         </dependency>
 
     </dependencies>
@@ -100,7 +101,7 @@
                     <properties>
                         <property>
                             <name>listener</name>
-                            <value>oru.appline.framework.util.MyAllureListener</value>
+                            <value>ru.appline.framework.util.MyAllureListener</value>
                         </property>
                     </properties>
                 </configuration>

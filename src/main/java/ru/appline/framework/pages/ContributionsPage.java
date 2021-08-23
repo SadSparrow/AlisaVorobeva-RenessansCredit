@@ -1,7 +1,7 @@
 package ru.appline.framework.pages;
 
 import io.qameta.allure.Step;
-import org.junit.jupiter.api.Assertions;
+import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
@@ -67,7 +67,7 @@ public class ContributionsPage extends BasePage {
                 return this;
             }
         }
-        Assertions.fail("Вкладка 'валюта: " + currencyName + "' не найдена");
+        Assert.fail("Вкладка 'валюта: " + currencyName + "' не найдена");
         return this;
     }
 
@@ -83,7 +83,7 @@ public class ContributionsPage extends BasePage {
                 fillNumbers(replenishInput, value);
                 checkReplenishSumWithRetry(5);
             }
-            default -> Assertions.fail("Поле '" + fieldName + "' отсутствует на странице");
+            default -> Assert.fail("Поле '" + fieldName + "' отсутствует на странице");
         }
         return this;
     }
@@ -101,14 +101,14 @@ public class ContributionsPage extends BasePage {
                 return this;
             }
         }
-        Assertions.fail("CheckBox '" + checkboxName + "' отсутствует на странице");
+        Assert.fail("CheckBox '" + checkboxName + "' отсутствует на странице");
         return this;
     }
 
     //проверка, что сумма вклада изменилась в поле "Есть сейчас"
     @Step("Проверить, что сумма вклада в поле 'Есть сейчас' равна '{expectedValue}'")
     public ContributionsPage checkAmount(int expectedValue) {
-        Assertions.assertEquals(expectedValue, getIntFromOuterText(calcAmount));
+        Assert.assertEquals("Значение некорректно", expectedValue, getIntFromOuterText(calcAmount));
         return this;
     }
 
@@ -131,10 +131,9 @@ public class ContributionsPage extends BasePage {
 
     @Step("Проверить расчеты по вкладу")
     public ContributionsPage checkResultSum() {
-        Assertions.assertEquals(
+        Assert.assertEquals("Сумма рассчитана некорректно",
                 roundTwoDigits(getIntFromOuterText(calcAmount) + getDoubleFromOuterText(calcEarned) + getIntFromOuterText(calcReplenish)),
-                getDoubleFromOuterText(calcResult),
-                "Сумма рассчитана некорректно");
+                getDoubleFromOuterText(calcResult), 0.0001);
         return this;
     }
 
@@ -151,7 +150,7 @@ public class ContributionsPage extends BasePage {
         }
         fillInputField(field, String.valueOf(value));
         waitUntil(ExpectedConditions.not(ExpectedConditions.textToBePresentInElement(field, valueMarker)), "Поле не было заполнено");
-        Assertions.assertEquals(getIntFromValue(field), value, "Поле было заполнено некорректно");
+        Assert.assertEquals("Поле было заполнено некорректно", getIntFromValue(field), value);
     }
 
     private boolean isSelectedCurrency(WebElement currency) {
@@ -183,7 +182,7 @@ public class ContributionsPage extends BasePage {
             }
         }
         if (i == countRetry) {
-            Assertions.fail("Ожидаемое значение в поле 'Пополнение за " + getAttributeOuterText(calcPeriod) + "': "
+            Assert.fail("Ожидаемое значение в поле 'Пополнение за " + getAttributeOuterText(calcPeriod) + "': "
                     + getReplenishSum() + ", фактическое значение: " + getAttributeOuterText(calcReplenish));
         }
     }
